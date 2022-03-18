@@ -1,0 +1,12 @@
+#!/bin/bash
+
+sonos office clear_queue
+sonos office play_mode SHUFFLE
+echo Playing: $1
+cd /srv/http/mp3/$1
+for i in *.mp3; do
+    echo $i
+    sonos office add_uri_to_queue http://behemoth.local/mp3/$1/$i
+done
+sonos office play_from_queue
+
