@@ -1,0 +1,72 @@
+#!/usr/bin/python
+import os, pprint, pickle, json, re, string
+from yt_dlp import YoutubeDL
+
+playlist = "https://www.youtube.com/playlist?list=PLYpVTXjEi1oe1OeAllJpNhFoI4B7Ws8Yl"
+desc_dir = "desc"
+
+def download_video_info(playlist):
+    with YoutubeDL() as ydl:
+        info = ydl.extract_info(playlist, download=False)
+
+    info = ydl.sanitize_info(info)
+    return info
+
+def download_video(url, filename):
+    ydl_opts = {
+        "format": "bestvideo+bestaudio",
+        "outtmpl": f"{filename}.%(ext)s"
+    }
+    with YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
+
+# Same as mkdir -p
+def mkdir_p(path):
+    try:
+        os.makedirs(path)
+    except FileExistsError:
+        pass
+
+info = download_video_info(playlist)
+
+# Just for debugging
+#with open("ytinf.json", "w") as f:
+#    json.dump(info, f, indent=2)
+#with open("ytinf.json", "r") as f:
+#    info = json.load(f)
+
+playlist_desc = info["description"]
+print("=======================================")
+print(playlist_desc)
+print("=======================================")
+print()
+
+mkdir_p(desc_dir)
+
+for i, entry in enumerate(info["entries"]):
+    title = entry["title"]
+    subdir = f"{i:02d}-{title}"
+    desc = entry["description"]
+    url = entry["webpage_url"]
+
+    desc_text = f"""# {title}
+
+{desc}
+
+{url}
+"""
+
+    # Clean the title text so it can be used as the filename
+    title_clean = title.lower().replace(" ", "_")
+    # Get rid of all weird punctuation since Android filenames don't like them
+    title_clean = re.sub(r"[^a-zA-Z0-9_-]+", "", title_clean)
+
+    filename = f"{i:02d}-{title_clean}"
+
+    with open(f"desc.txt", "a") as f:
+        f.write(desc_text)
+    print(desc_text)
+
+    print(f"Download to {filename}")
+    download_video(url, filename)
+
