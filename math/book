@@ -1,0 +1,5 @@
+#!/bin/bash
+cd /mnt/hdd/XXX/doc/books/
+BOOK=$(fd -i "$@" | fzf -1)
+nohup zathura --mode fullscreen "$BOOK" > /dev/null 2> /dev/null &
+
