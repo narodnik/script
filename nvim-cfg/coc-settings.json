@@ -1,0 +1,6 @@
+{
+    "notification.disabledProgressSources": ["*"],
+    "rust-analyzer.inlayHints.enable": false,
+    "rust-analyzer.disableProgressNotifications": false
+}
+
