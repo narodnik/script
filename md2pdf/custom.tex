@@ -1,0 +1,36 @@
+\usepackage{sectsty}
+%\sectionfont{\clearpage}
+
+\usepackage{enumitem}
+\usepackage{amsfonts}
+
+\usepackage{tikz-cd}
+
+% For algorithms
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% level one
+\setlist[itemize,1]{label=$\bullet$}
+% level two
+\setlist[itemize,2]{label=$\circ$}
+% level three
+\setlist[itemize,3]{label=$\star$}
+
+% Give a grey background to blockquotes
+\usepackage{framed}
+\usepackage{xcolor}
+\let\oldquote=\quote
+\let\endoldquote=\endquote
+\colorlet{shadecolor}{gray!15}
+\renewenvironment{quote}{\begin{shaded*}\begin{oldquote}}{\end{oldquote}\end{shaded*}}
+
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{extpfeil}
+\DeclareMathOperator\ord{ord}
+\DeclareMathOperator\cl{cl}
+\DeclareMathOperator\lcm{lcm}
+\newcommand{\repr}[1]{\overline{#1}}
+\newcommand{\√}[1]{\sqrt{#1}}
+

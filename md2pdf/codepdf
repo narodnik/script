@@ -1,0 +1,14 @@
+#!/bin/bash
+FILEPATH="$2"
+echo $PATH
+FILENAME="$(basename $FILEPATH)"
+OUTNAME="/tmp/$FILENAME.md"
+PDFNAME="/tmp/$FILENAME.pdf"
+echo "% $FILENAME" > $OUTNAME
+echo "\`\`\`$1" >> $OUTNAME
+cat $FILEPATH >> $OUTNAME
+echo "\`\`\`" >> $OUTNAME
+pandoc $OUTNAME \
+    -V geometry:margin=2cm \
+    -o $PDFNAME
+
