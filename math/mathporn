@@ -1,0 +1,92 @@
+#!/usr/bin/python
+import os, pprint, pickle, json, re, string, sys, traceback, yt_dlp
+from yt_dlp import YoutubeDL
+
+if len(sys.argv) != 2:
+    print("error: missing playlist", file=sys.stderr)
+    sys.exit(-1)
+playlist = sys.argv[1]
+
+desc_dir = "desc"
+
+def download_video_info(playlist):
+    ydl_opts = {
+        "ignoreerrors": True
+    }
+    with YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(playlist, download=False)
+
+    info = ydl.sanitize_info(info)
+    return info
+
+def download_video(url, filename):
+    ydl_opts = {
+        "format": "bestvideo+bestaudio",
+        "outtmpl": f"{filename}.%(ext)s"
+    }
+    with YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
+
+# Same as mkdir -p
+def mkdir_p(path):
+    try:
+        os.makedirs(path)
+    except FileExistsError:
+        pass
+
+info = download_video_info(playlist)
+
+# Just for debugging
+#with open("ytinf.json", "w") as f:
+#    json.dump(info, f, indent=2)
+#with open("ytinf.json", "r") as f:
+#    info = json.load(f)
+
+playlist_desc = info["description"]
+print("=======================================")
+print(playlist_desc)
+print("=======================================")
+print()
+
+mkdir_p(desc_dir)
+
+fails = []
+
+for i, entry in enumerate(info["entries"]):
+    title = entry["title"]
+    desc = entry["description"]
+    url = entry["webpage_url"]
+
+    desc_text = f"""# {i:02d} - {title}
+
+{desc}
+
+{url}
+"""
+
+    # Clean the title text so it can be used as the filename
+    title_clean = title.lower().replace(" ", "_")
+    # Get rid of all weird punctuation since Android filenames don't like them
+    title_clean = re.sub(r"[^a-zA-Z0-9_-]+", "", title_clean)
+
+    filename = f"{i:02d}-{title_clean}"
+
+    with open(f"desc.txt", "a") as f:
+        f.write(desc_text)
+        f.write("\n")
+    print(desc_text)
+
+    print(f"Download to {filename}")
+    try:
+        download_video(url, filename)
+    except yt_dlp.utils.DownloadError:
+        traceback.print_exc()
+        print()
+        print("Continuing...")
+        fails.append((i, url))
+
+
+if fails:
+    with open("fails.txt") as f:
+        for i, url in fails:
+            f.write(f"{i}    {url}")
