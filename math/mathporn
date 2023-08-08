@@ -7,8 +7,6 @@ if len(sys.argv) != 2:
     sys.exit(-1)
 playlist = sys.argv[1]
 
-desc_dir = "desc"
-
 def download_video_info(playlist):
     ydl_opts = {
         "ignoreerrors": True
@@ -27,13 +25,6 @@ def download_video(url, filename):
     with YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
 
-# Same as mkdir -p
-def mkdir_p(path):
-    try:
-        os.makedirs(path)
-    except FileExistsError:
-        pass
-
 info = download_video_info(playlist)
 
 # Just for debugging
@@ -47,8 +38,6 @@ print("=======================================")
 print(playlist_desc)
 print("=======================================")
 print()
-
-mkdir_p(desc_dir)
 
 fails = []
 
@@ -83,10 +72,11 @@ for i, entry in enumerate(info["entries"]):
         traceback.print_exc()
         print()
         print("Continuing...")
-        fails.append((i, url))
+        fails.append((i, url, filename))
 
 
 if fails:
-    with open("fails.txt") as f:
-        for i, url in fails:
-            f.write(f"{i}    {url}")
+    with open("fails.txt", "w") as f:
+        for i, url, filename in fails:
+            f.write(f"{i}    {url}    {filename}\n")
+

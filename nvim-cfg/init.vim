@@ -64,6 +64,9 @@ hi StatusLineNC gui=NONE guibg=#121516 guifg=#888888
 hi LineNR       guifg=#818f00
 hi CursorLineNR guifg=#818f00
 
+" auto resize splits when window resizes
+autocmd VimResized * wincmd =
+
 " For some reason it doesn't work:
 "hi! WinSeparator gui=NONE guibg=#222526 cterm=NONE
 "set fillchars+=vert:\ "white space at the end
@@ -207,12 +210,6 @@ let g:mwAutoLoadMarks=1
 " disable annoying grey column on left opened by CoC
 set signcolumn=no
 
-" remember cursor position
-autocmd BufReadPost *
-  \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-  \   exe "normal! g`\"" |
-  \ endif
-
 " hide noisy symbols
 hi NoisySymbols guifg=#aaaaaa
 autocmd FileType rust syn match NoisySymbols '[;{}\[\]:(),]'
@@ -232,7 +229,7 @@ cabbrev z Z
 
 dig a: 120094 b: 120095 c: 120096 p: 120109 ZZ 8484 in 8712 (< 8842
 dig ni 8713 (! 8840 :. 183 ** 215 i8 8734 QQ 8474 FF 120125
-dig ff 120601 PP 8473 !/ 8740 ll 8467 oo 8728 !3 8802 RR 8477
+dig ff 120601 PP 8473 !/ 8740 ll 8467 oo 8728 !3 8802 RR 8477 GG 120126
 " use ⟨ instead of 〈and ⟩ instead of 〉
 dig </ 10216 /> 10217
 " add an overline
@@ -247,4 +244,54 @@ dig ^x 739 ^y 696 ^z 7611 ^+ 8314 ^- 8315 ^= 8316 ^( 8317 ^) 8318
 " subscripts
 dig _0 8320 _1 8321 _2 8322 _3 8323 _4 8324 _5 8325 _6 8326 _7 8327
 dig _8 8328 _9 8329 _+ 8330 _- 8331 _= 8332 _( 8333 _) 8334
+
+lua << EOF
+
+-- Restore cursor position
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+    pattern = { "*" },
+    callback = function()
+        vim.api.nvim_exec('silent! normal! g`"zv', false)
+        vim.fn.feedkeys("zz0")
+    end,
+})
+
+function exists(file)
+    local f = io.open(file)
+    return f and io.close(f)
+end
+
+function gitcheck(first_dir)
+    --local objects = {}
+    --local i = 1
+    local dir = first_dir
+    while #dir > 0 and not exists(dir .. "/.git") do
+        dir = dir:gsub("/+[^/]*$", "")
+        --objects[i] = dir
+        --i = i + 1
+    end
+    -- repeat one more final step
+    dir = dir:gsub("/+[^/]*$", "")
+
+    if #dir == 0 then
+        return false
+    end
+
+    local relative_path = first_dir:gsub(
+        dir:gsub("(%W)","%%%1").."/",
+        ""
+    )
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local refpath = relative_path .. ":" .. row
+    return refpath
+end
+
+function yank_coderef()
+    local refpath = gitcheck(vim.api.nvim_buf_get_name(0))
+    vim.fn.setreg('+', refpath, "l")
+end
+-- yank code reference
+vim.api.nvim_set_keymap('n', '<leader>r', ':lua yank_coderef()<CR>', { noremap = true, silent = true })
+
+EOF
 
