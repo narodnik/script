@@ -263,7 +263,7 @@ dig vq 119850 vr 119851 vs 119852 vt 119853 vu 119854 vv 119855 vw 119856
 dig vx 119857 vy 119858 vz 119859
 dig v0 120782
 " mathcal
-dig cD 119967 cM 8499
+dig cD 119967 cM 8499 cN 119977
 
 lua << EOF
 
