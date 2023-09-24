@@ -227,9 +227,9 @@ endfunction
 command -nargs=1 Z :call Lz(<q-args>)
 cabbrev z Z
 
-dig a: 120094 b: 120095 c: 120096 p: 120109 ZZ 8484 in 8712 (< 8842
-dig ni 8713 (! 8840 :. 183 ** 215 i8 8734 QQ 8474 FF 120125
-dig ff 120601 PP 8473 !/ 8740 ll 8467 oo 8728 !3 8802 RR 8477 GG 120126
+dig a: 120094 b: 120095 c: 120096 p: 120109 in 8712 (< 8842
+dig ni 8713 (! 8840 :. 183 ** 215 i8 8734
+dig ff 120601 !/ 8740 ll 8467 oo 8728 !3 8802
 dig o+ 8853 _L 10178 :: 8942 +: 8721 *: 8719 ~~ 8764 => 10233 << 10232
 dig U: 8899
 " use ⟨ instead of 〈and ⟩ instead of 〉
@@ -265,6 +265,8 @@ dig vx 119857 vy 119858 vz 119859
 dig v0 120782
 " mathcal
 dig cB 8492 cD 119967 cM 8499 cN 119977
+" mathbb
+dig GG 120126 FF 120125 PP 8473 QQ 8474 RR 8477 TT 120139 ZZ 8484 
 
 lua << EOF
 
