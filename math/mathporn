@@ -20,7 +20,9 @@ def download_video_info(playlist):
 def download_video(url, filename):
     ydl_opts = {
         "format": "bestvideo+bestaudio",
-        "outtmpl": f"{filename}.%(ext)s"
+        "outtmpl": f"{filename}.%(ext)s",
+        "writesubtitles": True,
+        "subtitleslangs": ["en"],
     }
     with YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])

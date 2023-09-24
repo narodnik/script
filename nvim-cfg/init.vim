@@ -231,6 +231,7 @@ dig a: 120094 b: 120095 c: 120096 p: 120109 ZZ 8484 in 8712 (< 8842
 dig ni 8713 (! 8840 :. 183 ** 215 i8 8734 QQ 8474 FF 120125
 dig ff 120601 PP 8473 !/ 8740 ll 8467 oo 8728 !3 8802 RR 8477 GG 120126
 dig o+ 8853 _L 10178 :: 8942 +: 8721 *: 8719 ~~ 8764 => 10233
+dig U: 8899
 " use ⟨ instead of 〈and ⟩ instead of 〉
 dig </ 10216 /> 10217
 " add an overline
@@ -263,7 +264,7 @@ dig vq 119850 vr 119851 vs 119852 vt 119853 vu 119854 vv 119855 vw 119856
 dig vx 119857 vy 119858 vz 119859
 dig v0 120782
 " mathcal
-dig cD 119967 cM 8499 cN 119977
+dig cB 8492 cD 119967 cM 8499 cN 119977
 
 lua << EOF
 
