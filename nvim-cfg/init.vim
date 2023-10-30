@@ -216,6 +216,10 @@ autocmd FileType rust syn match NoisySymbols '[;{}\[\]:(),]'
 
 au BufNewFile,BufRead,BufReadPost *.zk set syntax=zk
 
+" useful with entr, for example recompile
+" echo /tmp/f5 | entr -nrs "cargo run --release"
+map <F5> :!touch /tmp/f5<cr><cr>
+
 function Lz(tag)
     if a:tag == "."
         exe "lcd %:p:h"
@@ -264,9 +268,9 @@ dig vq 119850 vr 119851 vs 119852 vt 119853 vu 119854 vv 119855 vw 119856
 dig vx 119857 vy 119858 vz 119859
 dig v0 120782
 " mathcal
-dig cB 8492 cD 119967 cM 8499 cN 119977
+dig cB 8492 cD 119967 cL 8466 cM 8499 cN 119977
 " mathbb
-dig GG 120126 FF 120125 PP 8473 QQ 8474 RR 8477 TT 120139 ZZ 8484 
+dig CC 8450 GG 120126 FF 120125 PP 8473 QQ 8474 RR 8477 TT 120139 ZZ 8484 
 
 lua << EOF
 
