@@ -176,6 +176,10 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
+nnoremap <leader>l :lcd %:p:h<cr>
+nnoremap <leader>h :lcd ..<cr>
+nnoremap <leader>p :pwd<cr>
+
 " use escape in the terminal
 au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
 " when opening new terminal, auto enter insert mode
