@@ -133,9 +133,10 @@ map <end> zz
 
 " 80 chars max
 set tw=80
-autocmd FileType text setlocal tw=0
-autocmd FileType markdown setlocal tw=0
-autocmd FileType rst setlocal tw=0
+"autocmd FileType text setlocal tw=0
+"autocmd FileType markdown setlocal tw=0
+"autocmd FileType rst setlocal tw=0
+" see colorcolumn
 set cc=+1
 hi ColorColumn guibg=black
 
