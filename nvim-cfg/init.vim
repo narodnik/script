@@ -219,7 +219,8 @@ set signcolumn=no
 hi NoisySymbols guifg=#aaaaaa
 autocmd FileType rust syn match NoisySymbols '[;{}\[\]:(),]'
 
-au BufNewFile,BufRead,BufReadPost *.zk set syntax=zk
+au BufNewFile,BufReadPost *.zk setlocal syntax=zk
+au BufNewFile,BufReadPost *.wat setlocal filetype=wast
 
 " useful with entr, for example recompile
 " echo /tmp/f5 | entr -nrs "cargo run --release"

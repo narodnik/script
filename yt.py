@@ -2,6 +2,7 @@
 import sys, subprocess
 from pathlib import Path
 from yt_dlp import YoutubeDL
+from sane_name import sane_name
 
 if len(sys.argv) != 2:
     print("error: missing video", file=sys.stderr)
@@ -13,8 +14,7 @@ with YoutubeDL() as ydl:
     path = ydl.prepare_filename(info)
     print(path)
 
-    filename = subprocess.run(["sane-name", path], capture_output=True)
-    filename = filename.stdout.decode().strip()
+    filename = sane_name(path)
     filename = str(Path(filename).with_suffix(""))
 
     #info["outtmpl"] = f"{filename}.%(ext)s"
