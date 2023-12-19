@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ $# -eq 0 ]] ; then
+    echo "you need a song name"
+    exit 0
+fi
+
+cd /srv/http/mp3/
+NAME=$(fd $1 | fzf -1)
+echo $NAME
+URL="http://behemoth.local/mp3/$NAME"
+sonos office play_mode NORMAL
+ID=$(sonos office add_uri_to_queue $URL)
+sonos office play_from_queue $ID
+

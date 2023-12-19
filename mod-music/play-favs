@@ -1,0 +1,18 @@
+#!/bin/bash
+sonos office play_mode NORMAL
+sonos office volume 40
+sonos office clear_queue
+sonos office add_uri_to_queue http://behemoth.local/mp3/skaven252/beyond_the_network.mp3
+sonos office add_uri_to_queue http://behemoth.local/mp3/radix/radix_-_yuki_satellites.mp3
+sonos office add_uri_to_queue http://behemoth.local/mp3/top/ELYSIUM.mp3
+sonos office add_uri_to_queue http://behemoth.local/mp3/top/GSLINGER.mp3
+sonos office add_uri_to_queue http://behemoth.local/mp3/cube/project_biotenshu.mp3
+sonos office add_uri_to_queue http://behemoth.local/mp3/top/pbe_pro.mp3
+sonos office add_uri_to_queue http://behemoth.local/mp3/top/mindfriend_-_bad_seed_bossanova_8bit.mp3
+sonos office add_uri_to_queue http://behemoth.local/mp3/top/fby_-_bladerunner.mp3
+
+sonos office add_uri_to_queue http://behemoth.local/mp3/mine/m72_everyday_higher_cdrmx.mp3
+sonos office add_uri_to_queue http://behemoth.local/mp3/mine/skyline_-_skylines_zeal_theme.mp3
+
+sonos office play
+
