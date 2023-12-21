@@ -13,6 +13,13 @@ Plug 'tomlion/vim-solidity'
 " bad plugin hijacks my keys
 "Plug 'joom/latex-unicoder.vim'
 
+" :PlugInstall
+" :MasonInstall rust-analyzer
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'simrat39/rust-tools.nvim'
+
 call plug#end()
 
 " put this for sunlight conditions
@@ -278,6 +285,13 @@ dig cB 8492 cD 119967 cL 8466 cM 8499 cN 119977
 " mathbb
 dig CC 8450 GG 120126 FF 120125 PP 8473 QQ 8474 RR 8477 TT 120139 ZZ 8484 
 
+sign define DiagnosticSignError text=E texthl=DiagnosticSignError linehl= numhl=DiagnosticSignError
+sign define DiagnosticSignWarn text=W texthl=DiagnosticSignWarn linehl= numhl=DiagnosticSignWarn
+sign define DiagnosticSignInfo text=I texthl=DiagnosticSignInfo linehl= numhl=DiagnosticSignInfo
+sign define DiagnosticSignHint text=H texthl=DiagnosticSignHint linehl= numhl=DiagnosticSignHint
+" This is the popup which shows the actual error
+" autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+
 lua << EOF
 
 -- Restore cursor position
@@ -325,6 +339,37 @@ function yank_coderef()
 end
 -- yank code reference
 vim.api.nvim_set_keymap('n', '<leader>r', ':lua yank_coderef()<CR>', { noremap = true, silent = true })
+
+require("mason").setup()
+require("mason-lspconfig").setup()
+-- disable the retard ass syntax highlighting by rust tools
+local rt = require("rust-tools")
+rt.setup({
+  server = {
+    on_attach = function(client, bufnr)
+      client.server_capabilities.semanticTokensProvider = nil
+    end,
+  },
+  tools = {
+    inlay_hints = {
+      auto = false,
+    }
+  }
+})
+
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    update_in_insert = true,
+    underline = true,
+    severity_sort = true,
+    float = {
+        border = 'rounded',
+        source = 'always',
+        header = '',
+        prefix = '',
+    },
+})
 
 EOF
 
