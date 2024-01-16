@@ -281,16 +281,16 @@ dig vq 119850 vr 119851 vs 119852 vt 119853 vu 119854 vv 119855 vw 119856
 dig vx 119857 vy 119858 vz 119859
 dig v0 120782
 " mathcal
-dig cB 8492 cD 119967 cL 8466 cM 8499 cN 119977
+dig cB 8492 cD 119967 cL 8466 cM 8499 cN 119977 cP 119979 cX 119987 cY 119988
 " mathbb
-dig CC 8450 GG 120126 FF 120125 PP 8473 QQ 8474 RR 8477 TT 120139 ZZ 8484 
+dig BB 120121 CC 8450 GG 120126 FF 120125 NN 8469 PP 8473 QQ 8474 RR 8477 TT 120139 ZZ 8484 
 
 sign define DiagnosticSignError text=E texthl=DiagnosticSignError linehl= numhl=DiagnosticSignError
 sign define DiagnosticSignWarn text=W texthl=DiagnosticSignWarn linehl= numhl=DiagnosticSignWarn
 sign define DiagnosticSignInfo text=I texthl=DiagnosticSignInfo linehl= numhl=DiagnosticSignInfo
 sign define DiagnosticSignHint text=H texthl=DiagnosticSignHint linehl= numhl=DiagnosticSignHint
 " This is the popup which shows the actual error
-" autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
 lua << EOF
 
@@ -349,6 +349,21 @@ rt.setup({
     on_attach = function(client, bufnr)
       client.server_capabilities.semanticTokensProvider = nil
     end,
+    settings = {
+      ["rust-analyzer"] = {
+        -- procMacro = { enable = true, attributes = { enable = true } },
+        check = {
+          targets = {"wasm32-unknown-unknown"},
+          noDefaultFeatures = true,
+          features = {}
+        },
+        cargo = {
+          targets = {"wasm32-unknown-unknown"},
+          noDefaultFeatures = true,
+          features = {}
+        }
+      }
+    }
   },
   tools = {
     inlay_hints = {
