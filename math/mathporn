@@ -22,7 +22,7 @@ def download_video(url, filename):
         "format": "bestvideo+bestaudio",
         "outtmpl": f"{filename}.%(ext)s",
         "writesubtitles": True,
-        "subtitleslangs": ["en"],
+        "subtitleslangs": ["en.*"],
     }
     with YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
@@ -44,6 +44,10 @@ print()
 fails = []
 
 for i, entry in enumerate(info["entries"]):
+    if entry is None:
+        fails.append((i, None, None))
+        continue
+
     title = entry["title"]
     desc = entry["description"]
     url = entry["webpage_url"]

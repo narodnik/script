@@ -281,9 +281,11 @@ dig vq 119850 vr 119851 vs 119852 vt 119853 vu 119854 vv 119855 vw 119856
 dig vx 119857 vy 119858 vz 119859
 dig v0 120782
 " mathcal
-dig cA 119964 cB 8492 cC 119966 cD 119967 cL 8466 cM 8499 cN 119977 cP 119979 cX 119987 cY 119988
+dig cA 119964 cB 8492 cC 119966 cD 119967 cL 8466 cM 8499 cN 119977 cP 119979
+dig cU 119984 cX 119987 cY 119988
 " mathbb
 dig BB 120121 CC 8450 GG 120126 FF 120125 NN 8469 PP 8473 QQ 8474 RR 8477 TT 120139 ZZ 8484 
+dig e> 8608 m> 8611 \/ 8595
 
 sign define DiagnosticSignError text=E texthl=DiagnosticSignError linehl= numhl=DiagnosticSignError
 sign define DiagnosticSignWarn text=W texthl=DiagnosticSignWarn linehl= numhl=DiagnosticSignWarn

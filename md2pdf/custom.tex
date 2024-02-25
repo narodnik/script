@@ -29,10 +29,36 @@
 \usepackage{mathtools}
 \usepackage{extpfeil}
 \DeclareMathOperator\ord{ord}
+\DeclareMathOperator\dim{dim}
 \DeclareMathOperator\cl{cl}
 \DeclareMathOperator\lcm{lcm}
 \newcommand{\repr}[1]{\overline{#1}}
 \newcommand{\√}[1]{\sqrt{#1}}
 
 \usepackage{derivative}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\Ab}{\catname{Ab}}
+\DeclareMathOperator\ker{ker}
+\DeclareMathOperator\im{im}
+\DeclareMathOperator\End{End}
+\DeclareMathOperator\dom{dom}
+\DeclareMathOperator\cod{cod}
+\newcommand{\→}[1]{\xrightarrow{#1}}
+
+\usepackage{tabstackengine}
+% row separator
+\setstackEOL{;}
+% column separator
+\setstackTAB{,}
+% inter-column gap
+\setstacktabbedgap{1ex}
+% inter-row baselineskip
+\setstackgap{L}{1.0\normalbaselineskip}
+% matrix and vec stuff
+\let\M\parenMatrixstack
+\let\vec\mathbf
+\DeclareMathOperator\det{det}
+\DeclareMathOperator\Tr{Tr}
 
