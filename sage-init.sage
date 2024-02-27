@@ -26,3 +26,8 @@ def hide_traceback(exc_tuple=None, filename=None, tb_offset=None,
 
 ipython.showtraceback = hide_traceback
 
+# Change the PNG viewer
+
+from sage.misc.viewer import viewer
+viewer.png_viewer('qimgv') 
+

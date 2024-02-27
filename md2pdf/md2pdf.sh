@@ -18,6 +18,8 @@ pandoc "$INPUT" \
     --toc-depth 3 \
     --include-in-header $DIR/custom.tex \
     --include-in-header $DIR/disable_float.tex \
+    --citeproc \
+    --csl=$DIR/cite.csl \
     -V linkcolor:blue \
     -V geometry:a4paper \
     -V geometry:margin=2cm \
