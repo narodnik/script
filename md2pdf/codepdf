@@ -1,6 +1,6 @@
 #!/bin/bash
+# Convert code to formatted PDF and print it
 FILEPATH="$2"
-echo $PATH
 FILENAME="$(basename $FILEPATH)"
 OUTNAME="/tmp/$FILENAME.md"
 PDFNAME="/tmp/$FILENAME.pdf"
@@ -11,4 +11,7 @@ echo "\`\`\`" >> $OUTNAME
 pandoc $OUTNAME \
     -V geometry:margin=2cm \
     -o $PDFNAME
+lpr $PDFNAME
+rm $OUTNAME
+rm $PDFNAME
 
