@@ -10,15 +10,6 @@ Plug 'jbyuki/instant.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'kristijanhusak/orgmode.nvim'
 Plug 'tomlion/vim-solidity'
-" bad plugin hijacks my keys
-"Plug 'joom/latex-unicoder.vim'
-
-" :PlugInstall
-" :MasonInstall rust-analyzer
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'simrat39/rust-tools.nvim'
 
 call plug#end()
 
@@ -290,13 +281,6 @@ dig AA 120120 BB 120121 DD 120123 EE 120124 FF 120125 GG 120126 II 120128 JJ 120
 dig CC 8450 HH 8461 NN 8469 PP 8473 QQ 8474 RR 8477 ZZ 8484 
 dig e> 8608 m> 8611 \/ 8595 i> 8618
 
-sign define DiagnosticSignError text=E texthl=DiagnosticSignError linehl= numhl=DiagnosticSignError
-sign define DiagnosticSignWarn text=W texthl=DiagnosticSignWarn linehl= numhl=DiagnosticSignWarn
-sign define DiagnosticSignInfo text=I texthl=DiagnosticSignInfo linehl= numhl=DiagnosticSignInfo
-sign define DiagnosticSignHint text=H texthl=DiagnosticSignHint linehl= numhl=DiagnosticSignHint
-" This is the popup which shows the actual error
-autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-
 lua << EOF
 
 -- Restore cursor position
@@ -344,52 +328,6 @@ function yank_coderef()
 end
 -- yank code reference
 vim.api.nvim_set_keymap('n', '<leader>r', ':lua yank_coderef()<CR>', { noremap = true, silent = true })
-
-require("mason").setup()
-require("mason-lspconfig").setup()
--- disable the retard ass syntax highlighting by rust tools
-local rt = require("rust-tools")
-rt.setup({
-  server = {
-    on_attach = function(client, bufnr)
-      client.server_capabilities.semanticTokensProvider = nil
-    end,
-    settings = {
-      ["rust-analyzer"] = {
-        -- procMacro = { enable = true, attributes = { enable = true } },
-        check = {
-          targets = {"wasm32-unknown-unknown"},
-          noDefaultFeatures = true,
-          features = {}
-        },
-        cargo = {
-          targets = {"wasm32-unknown-unknown"},
-          noDefaultFeatures = true,
-          features = {}
-        }
-      }
-    }
-  },
-  tools = {
-    inlay_hints = {
-      auto = false,
-    }
-  }
-})
-
-vim.diagnostic.config({
-    virtual_text = false,
-    signs = true,
-    update_in_insert = true,
-    underline = true,
-    severity_sort = true,
-    float = {
-        border = 'rounded',
-        source = 'always',
-        header = '',
-        prefix = '',
-    },
-})
 
 EOF
 
