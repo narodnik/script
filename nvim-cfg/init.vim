@@ -179,6 +179,11 @@ nnoremap <leader>l :lcd %:p:h<cr>
 nnoremap <leader>h :lcd ..<cr>
 nnoremap <leader>p :pwd<cr>
 
+" replace word under cursor with current yank. Good for replacing fn names
+nnoremap <leader>q "_dwP
+" delete function body
+nnoremap <leader>D Vk$%k"_d
+
 " use escape in the terminal
 au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
 " when opening new terminal, auto enter insert mode
@@ -238,7 +243,7 @@ cabbrev z Z
 dig a: 120094 b: 120095 c: 120096 p: 120109 in 8712 (< 8842
 dig ni 8713 (! 8840 :. 183 ** 215 i8 8734
 dig ff 120601 !/ 8740 ll 8467 oo 8728 !3 8802
-dig o+ 8853 O: 10753 :: 8942 +: 8721 *: 8719 ~~ 8764 => 10233 << 10232
+dig o+ 8853 o* 8855 O: 10753 :: 8942 +: 8721 *: 8719 ~~ 8764 => 10233 << 10232
 dig U: 8899 _L 10178
 " use ⟨ instead of 〈and ⟩ instead of 〉
 dig </ 10216 /> 10217

@@ -26,7 +26,8 @@ with YoutubeDL() as ydl:
     #ydl.process_info(info)
 print(filename)
 
-if not glob.glob(f"{OUTPATH}/{filename}.*"):
+existing_file = glob.glob(f"{OUTPATH}/{filename}.*")
+if not existing_file:
     ydl_opts = {
         "format": "bestvideo[height<=1080]+bestaudio",
         "outtmpl": f"{OUTPATH}/{filename}.%(ext)s",
@@ -47,7 +48,7 @@ if not glob.glob(f"{OUTPATH}/{filename}.*"):
     #    subsfile = subsfile[0]
     #    os.rename(subsfile, f"{OUTPATH}/{filename}.vtt")
 else:
-    saved_filename = glob.glob(f"{OUTPATH}/{filename}.webm")[0]
+    saved_filename = existing_file[0]
 
 os.system(f"mpv --sub-auto=fuzzy --sid=1 {saved_filename}")
 
