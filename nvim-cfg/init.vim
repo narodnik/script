@@ -10,12 +10,47 @@ Plug 'jbyuki/instant.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'kristijanhusak/orgmode.nvim'
 Plug 'tomlion/vim-solidity'
+Plug 'chaoren/vim-wordmotion'
 
 call plug#end()
+
+let g:wordmotion_mappings = {
+  \ 'w' : 'z',
+  \ 'e' : '<M-e>',
+  \ 'b' : '<M-b>',
+  \ 'ge' : 'g<M-e>',
+  \ 'iw' : 'i<M-w>',
+  \ 'aw' : 'a<M-w>',
+  \ '<C-R><C-W>' : '<C-R><M-w>',
+  \ 'W' : 'Z',
+  \ 'E' : '<M-E>',
+  \ 'B' : '<M-B>',
+  \ 'gE' : 'g<M-E>',
+  \ 'iW' : 'i<M-W>',
+  \ 'aW' : 'a<M-W>',
+  \ '<C-R><C-A>' : '<C-R><M-a>',
+\ }
+"let g:wordmotion_mappings = {
+"  \ 'w' : '<M-w>',
+"  \ 'e' : '<M-e>',
+"  \ 'b' : '<M-b>',
+"  \ 'ge' : 'g<M-e>',
+"  \ 'iw' : 'i<M-w>',
+"  \ 'aw' : 'a<M-w>',
+"  \ '<C-R><C-W>' : '<C-R><M-w>',
+"  \ 'W' : '<M-W>',
+"  \ 'E' : '<M-E>',
+"  \ 'B' : '<M-B>',
+"  \ 'gE' : 'g<M-E>',
+"  \ 'iW' : 'i<M-W>',
+"  \ 'aW' : 'a<M-W>',
+"  \ '<C-R><C-A>' : '<C-R><M-a>',
+"\ }
 
 " put this for sunlight conditions
 "set background=light
 "colorscheme PaperColor
+colorscheme vim
 
 "set background=dark
 "colorscheme NeoSolarized
@@ -125,9 +160,9 @@ nnoremap <left> <nop>
 nnoremap <right> <nop>
 
 " peek up/down
-map <pageup> zb5<c-e>
-map <pagedown> zt5<c-y>
-map <end> zz
+nnoremap <pageup> zb5<c-e>
+nnoremap <pagedown> zt5<c-y>
+nnoremap <end> zz
 
 " 80 chars max
 set tw=80
@@ -256,11 +291,12 @@ dig == 10234
 dig ^0 8304 ^1 185 ^2 178 ^3 179 ^4 8308 ^5 8309 ^6 8310 ^7 8311
 dig ^8 8312 ^9 8313 ^a 7491 ^b 7495 ^c 7580 ^d 7496 ^e 7497 ^f 7584
 dig ^g 7501 ^h 688 ^i 8305 ^j 690 ^k 7503 ^l 737 ^m 7504 ^n 8319
-dig ^o 7506 ^p 7510 ^r 691 ^s 738 ^t 7511 ^u 7512 ^v 7515 ^w 695
+dig ^o 7506 ^p 7510 ^q 67493 ^r 691 ^s 738 ^t 7511 ^u 7512 ^v 7515 ^w 695
 dig ^x 739 ^y 696 ^z 7611 ^+ 8314 ^- 8315 ^= 8316 ^( 8317 ^) 8318
-dig ^A 7468 ^B 7470 ^D 7472 ^E 7473 ^G 7475 ^H 7476 ^I 7477 ^J 7478
-dig ^K 7479 ^L 7480 ^M 7481 ^N 7482 ^O 7484 ^P 7486 ^R 7487 ^T 7488
-dig ^U 7489 ^V 11389 ^W 7490
+dig ^/ 5151
+dig ^A 7468 ^B 7470 ^C 42994 ^D 7472 ^E 7473 ^F 42995 ^G 7475 ^H 7476 ^I 7477 ^J 7478
+dig ^K 7479 ^L 7480 ^M 7481 ^N 7482 ^O 7484 ^P 7486 ^Q 42996 ^R 7487 ^T 7488
+dig ^U 7489 ^V 11389 ^W 7490 ^X 7521 ^Y 67506 ^Z 5702
 " subscripts
 dig _0 8320 _1 8321 _2 8322 _3 8323 _4 8324 _5 8325 _6 8326 _7 8327
 dig _8 8328 _9 8329 _+ 8330 _- 8331 _= 8332 _( 8333 _) 8334
