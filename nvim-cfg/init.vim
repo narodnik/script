@@ -219,6 +219,9 @@ nnoremap <leader>q "_dwP
 " delete function body
 nnoremap <leader>D Vk$%k"_d
 
+" highlight first N chars
+nnoremap <leader>S /\%^\_.\{274}/e<cr>
+
 " use escape in the terminal
 au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
 " when opening new terminal, auto enter insert mode
