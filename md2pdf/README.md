@@ -34,4 +34,7 @@ $ tlmgr install sectsty
 $ tlmgr install enumitem
 $ texhash
 ```
+# Citation Styles
 
+See [Citation Styles DB](https://github.com/citation-style-language/styles)
+and [most popular CSL](https://ecorrector.com/unveiling-the-most-popular-citation-styles-your-ultimate-guide/).

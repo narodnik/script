@@ -19,7 +19,7 @@ pandoc "$INPUT" \
     --include-in-header $DIR/custom.tex \
     --include-in-header $DIR/disable_float.tex \
     --citeproc \
-    --csl=$DIR/cite.csl \
+    --csl=$DIR/american-medical-association.csl \
     -V linkcolor:blue \
     -V geometry:a4paper \
     -V geometry:margin=2cm \
