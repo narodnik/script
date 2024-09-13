@@ -1,0 +1,4 @@
+#!/bin/sh
+cat ~/mus/rec/curr >> ~/mus/rec/fav
+echo >> ~/mus/rec/fav
+

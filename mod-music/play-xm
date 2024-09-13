@@ -1,0 +1,17 @@
+#!/usr/bin/python
+import os, glob, subprocess
+
+HOME = os.environ["HOME"]
+os.chdir(f"{HOME}/mus/shared/latest/")
+files = glob.glob("**/*", recursive=True)
+files = [f for f in files if os.path.isfile(f)]
+
+played_files = open(f"{HOME}/mus/rec/all").read().split("\n")
+files = [f for f in files if f not in played_files]
+for file in files:
+    with open(f"{HOME}/mus/rec/curr", "w") as f:
+        f.write(file)
+    process = subprocess.run(["xmp", file])
+    with open(f"{HOME}/mus/rec/all", "a") as f:
+        f.write(f"{file}\n")
+
