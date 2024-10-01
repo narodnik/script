@@ -166,7 +166,8 @@ nnoremap <end> zz
 
 " 80 chars max
 set tw=80
-"autocmd FileType text setlocal tw=0
+autocmd FileType text setlocal tw=0
+autocmd FileType gitcommit setlocal tw=0
 "autocmd FileType markdown setlocal tw=0
 "autocmd FileType rst setlocal tw=0
 " see colorcolumn
