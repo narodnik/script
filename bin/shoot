@@ -1,0 +1,6 @@
+#!/bin/bash
+TS=$(date +%s)
+NAME="/tmp/screenshot-$TS.png"
+grimshot save area $NAME
+doomp $NAME
+

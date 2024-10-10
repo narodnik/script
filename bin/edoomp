@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+NAME=$(basename $1)
+PASS=$(openssl rand -hex 40)
+gpg -o /tmp/$NAME.enc --symmetric --batch --yes --passphrase $PASS $1
+scp /tmp/$NAME.enc $SERVER_NAME:/srv/http/uploads/
+URL="https://$DOMAIN_NAME/uploads/$NAME.enc"
+echo $URL pass: $PASS
+echo $URL pass: $PASS | wl-copy
+

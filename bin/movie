@@ -1,0 +1,10 @@
+#!/bin/bash
+cd /mnt/store/vid/movie/
+#cd ~/vid/movie/
+MOVIE=$(fd -i "$@" | fzf -1)
+if [ -z "$MOVIE" ]; then
+    exit
+fi
+echo $MOVIE >> /mnt/store/movie.log
+mpv "$MOVIE"
+

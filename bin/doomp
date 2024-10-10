@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+scp $1 $SERVER_NAME:/srv/http/uploads/
+NAME=$(basename $1)
+URL="https://$DOMAIN_NAME/uploads/$NAME"
+echo $URL | wl-copy
+echo $URL
+

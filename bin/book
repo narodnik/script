@@ -1,0 +1,8 @@
+#!/bin/bash
+cd ~/doc/book/
+BOOK=$(fd -i "$@" | fzf -1)
+if [ -z "$BOOK" ]; then
+    exit
+fi
+nohup zathura "$BOOK" > /dev/null 2> /dev/null &
+
