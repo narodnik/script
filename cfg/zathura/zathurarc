@@ -1,0 +1,23 @@
+set recolor true
+#toggle_fullscreen
+#set toggle_pagemode 2
+set pages-per-row 2
+set selection-clipboard clipboard
+
+# Dual mode should start on the left!
+set first-page-column 1:1
+#map f set first-page-column 1
+map f feedkeys ":set first-page-column 1<Return>"
+map F feedkeys ":set first-page-column 2<Return>"
+
+set font "monospace normal 30"
+
+# don't invert images
+set recolor-reverse-video "true"
+
+#set recolor "true"
+#set recolor-lightcolor "#000000" #00
+#set recolor-darkcolor "#E0E0E0" #06
+#set recolor-reverse-video "true"
+#set recolor-keephue "true"
+
