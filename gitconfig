@@ -1,0 +1,13 @@
+[user]
+	email = xxx@xxx
+	name = xxx
+[commit]
+	verbose = true
+[color]
+	ui = auto
+[init]
+	defaultBranch = master
+[alias]
+    cloc = "!sh -c 'cloc $(git ls-files)'"
+    hist = log --follow -p --
+
