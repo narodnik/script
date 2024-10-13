@@ -1,4 +1,4 @@
-set recolor true
+#set recolor true
 #toggle_fullscreen
 #set toggle_pagemode 2
 set pages-per-row 2
@@ -7,8 +7,8 @@ set selection-clipboard clipboard
 # Dual mode should start on the left!
 set first-page-column 1:1
 #map f set first-page-column 1
-map f feedkeys ":set first-page-column 1<Return>"
-map F feedkeys ":set first-page-column 2<Return>"
+map f feedkeys ":set first-page-column 1:1<Return>"
+map F feedkeys ":set first-page-column 1:2<Return>"
 
 set font "monospace normal 30"
 
@@ -21,3 +21,12 @@ set recolor-reverse-video "true"
 #set recolor-reverse-video "true"
 #set recolor-keephue "true"
 
+#set default-bg "#ffffff"
+#set inputbar-bg "#ffffff"
+#set statusbar-bg "#ffffff"
+#set statusbar-fg "#000000"
+# Hide statusbar by default
+set guioptions ""
+
+map t feedkeys ":set guioptions \"\"<Return>"
+map T feedkeys ":set guioptions s<Return>"

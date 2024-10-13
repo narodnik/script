@@ -4,5 +4,12 @@ BOOK=$(fd -i "$@" | fzf -1)
 if [ -z "$BOOK" ]; then
     exit
 fi
-nohup zathura "$BOOK" > /dev/null 2> /dev/null &
+FNAME="$(basename "$BOOK")"
+CROPPED="../.crop/$FNAME"
+echo $CROPPED
+if [ -f "$CROPPED" ]; then
+    nohup zathura "$CROPPED" > /dev/null 2> /dev/null &
+else
+    nohup zathura "$BOOK" > /dev/null 2> /dev/null &
+fi
 
